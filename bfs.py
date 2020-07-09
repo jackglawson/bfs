@@ -8,6 +8,8 @@ def bfs(n, edges, s):
         edges_by_vertex[edge[1]].append(edge[0])
 
     discovered = set()
+    depths = {}
+    depths[s] = 0
 
     q = [s]    # queue
     discovered.add(s)
@@ -15,6 +17,7 @@ def bfs(n, edges, s):
         v = q.pop()
         for w in edges_by_vertex[v]:
             if w not in discovered:
+                depths[w] = depths[v] + 1
                 print('discovered {}'.format(w))
                 discovered.add(w)
                 q.insert(0, w)
